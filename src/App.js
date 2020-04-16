@@ -14,19 +14,30 @@ class App extends Component {
         this.setState({
             characters: characters.filter((character, i) => {
                 return i !== index
-            }),
-        })
+            })
+        });
+    }
+
+    handleSubmit = character => {
+        this.setState({characters: [...this.state.characters, character]})
     }
     
     render() {
         const { characters } = this.state
         return (
             <div className="container">
-                <Table characterData={characters} removeCharacter={this.removeCharacter} />
-                <Form />
+                <h1>React Table Tutorial</h1>
+                <p>Add a character with name and a job to the table</p>
+                
+                <Table characterData={characters} 
+                removeCharacter={this.removeCharacter} 
+                />
+                <h3>Add New</h3>
+
+                <Form handleSubmit={this.handleSubmit} />
             </div>
-        )
+        );
     }
 }
 
-export default App
+export default App;

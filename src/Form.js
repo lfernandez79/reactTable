@@ -1,19 +1,27 @@
 import React, { Component } from 'react'
-// import { render } from "@testing-library/react"
+
 
 class Form extends Component {
     initialState = {
         name: "",
-        job: "",
-    }
+        job: ""
+    };
     state = this.initialState
 
 
     handleChange = event => {
-        const { name, value } = event.target
+        const { name, value } = event.target;
+       
         this.setState ({
-            [name]: value,
-        })
+            [name]: value
+        });
+        console.log(event.target)
+    }
+
+    submitForm = (event) => {
+        event.preventDefault();
+        this.props.handleSubmit(this.state);
+        this.setState(this.initialState)
     }
 
     render() {
@@ -26,8 +34,11 @@ class Form extends Component {
                 
                 <label htmlFor="job">Job</label>
                 <input type="text" name="job" id="job" value={job} onChange={this.handleChange} />
+                
+                <input type="button" value="Log it!" onClick={this.submitForm} />
+                
             </form>
         );
     }
-}
+} 
 export default Form;
